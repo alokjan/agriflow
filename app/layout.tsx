@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Manrope } from 'next/font/google'
+import { Plus_Jakarta_Sans, Manrope, Noto_Sans_Devanagari } from 'next/font/google'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
@@ -12,6 +12,10 @@ const _headingFont = Plus_Jakarta_Sans({
 const _bodyFont = Manrope({
   subsets: ['latin'],
   variable: '--font-body',
+})
+const _devanagariFont = Noto_Sans_Devanagari({
+  subsets: ['devanagari'],
+  variable: '--font-devanagari',
 })
 
 export const metadata: Metadata = {
@@ -50,7 +54,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`bg-background ${_headingFont.variable} ${_bodyFont.variable}`}>
+    <html
+      lang="en"
+      className={`bg-background ${_headingFont.variable} ${_bodyFont.variable} ${_devanagariFont.variable}`}
+    >
       <body className="antialiased font-sans">
         <TooltipProvider>{children}</TooltipProvider>
         <Toaster position="top-center" />
